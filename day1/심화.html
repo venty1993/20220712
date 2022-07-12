@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <p>1번째 가전제품은 <span class="one"></span>입니다.</p>
+    <p>2번째 가전제품은 <span class="two"></span>입니다.</p>
+    <p>3번째 가전제품은 <span class="three"></span>입니다.</p>
+
+    <script>
+      var one = document.querySelector(".one");
+      var two = document.querySelector(".two");
+      var three = document.querySelector(".three");
+
+      one.innerText = prompt("첫번째 가전제품은 무엇인가요?");
+      two.innerText = prompt("두번째 가전제품은 무엇인가요?");
+      three.innerText = prompt("세번째 가전제품은 무엇인가요?");
+    </script>
+  </body>
+</html>
