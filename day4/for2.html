@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      let b = 0;
+
+      for (let i = 0; i < 10; i++) {
+        b = b + i;
+      }
+
+      console.log(b);
+
+      for (let i = 0; i < 10; i++) {
+        b = b + i;
+      }
+
+      console.log(b);
+      // 1번째실행 : i = 0, b=0 b+i=0
+      // 2번째실행 : i = 1, b=0 b+i=1
+      // 3번째실행 : i = 2, b=1 b+i=3
+      // 4번째실행 : i = 3, b=3 b+i=6
+      // 5번째실행 : i = 4, b=6 b+i=10
+
+      b = 0;
+      for (let i = 0; i < 5; i++) {
+        b = b + 3;
+      }
+    </script>
+  </body>
+</html>

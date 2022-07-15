@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    변수 선언할때 var 이용해서 선언한다. var는 호이스팅과 스코프때문에 문제가
+    많아 let과 const를 사용한다 let : 변수 const : 상수 변수 : 변하는값 상수 :
+    변하지 않는 값
+
+    <span class="count"></span>
+
+    <script>
+      let myAge = 20;
+      myAge = 30;
+      console.log(myAge);
+
+      const count = document.querySelector(".count");
+      const myBirthYear = 1993;
+      const myBirthMonth = 09;
+      const myBirthDay = 20;
+
+      let today = new Date();
+
+      let age = today.getFullYear() - myBirthYear + 1;
+      console.log(`올해 내 나이는 ${age}살이다..`);
+      console.log("올해 내 나이는 " + age + "살이다..");
+    </script>
+  </body>
+</html>
