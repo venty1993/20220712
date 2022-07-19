@@ -34,19 +34,25 @@
       <h2 id="now-dan">asd</h2>
       <p class="output">111</p>
     </div>
+
     <script>
       const calcButton = document.getElementById("calc");
+      const danInput = document.getElementById("dan-input");
+
       calcButton.addEventListener("click", () => {
-        const danInput = document.getElementById("dan-input");
-        const nowDan = document.getElementById("now-dan");
-        const output = document.getElementsByClassName("output");
         const dan = danInput.value;
         danInput.value = "";
 
-        nowDan.innerHTML = `${dan}단`;
+        const nowDan = document.getElementById("now-dan");
+        nowDan.innerText = `${dan}단`;
+
+        const output = document.getElementsByClassName("output");
+
         output[0].innerText = "";
         for (let i = 1; i <= 9; i++) {
           output[0].innerHTML += `${dan} x ${i} = ${dan * i}<br>`;
+
+          // output[0].innerHTML = output[0].innerHTML + `${dan} x ${i} = ${dan * i}<br>`;
         }
       });
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hi">hihi1</div>
+    <div class="hi">hihi2</div>
+    <div class="hi">hihi3</div>
+    <div class="hi">hihi4</div>
+    <div class="hi">hihi5</div>
+
+    <script>
+      const WEB4수강생1 = "이은빈";
+      const WEB4수강생2 = "김경희";
+      const WEB4수강생3 = "김수완";
+      // .
+      // .
+      // .
+      const WEB4수강생9 = "김찬율";
+
+      function 출석체크() {
+        console.log(`출석번호 1번은 ${WEB4수강생1}입니다`);
+        console.log(`출석번호 2번은 ${WEB4수강생2}입니다`);
+        console.log(`출석번호 3번은 ${WEB4수강생3}입니다`);
+        // .
+        // .
+        // .
+        console.log(`출석번호 9번은 ${WEB4수강생9}입니다`);
+      }
+
+      const WEB4수강생 = [
+        "이은빈",
+        "김경희",
+        "김수완",
+        "임지민",
+        "이다솜",
+        "손경은",
+        "남기쁨",
+        "박도현",
+        "김찬율",
+        "김갑룡",
+      ];
+
+      function 반복문출석체크() {
+        for (let i = 0; i < WEB4수강생.length; i++) {
+          console.log(`출석번호 ${i + 1}번은 ${WEB4수강생[i]}`);
+        }
+      }
+
+      const his = document.getElementsByClassName("hi");
+
+      //   for (let i = 0; i < his.length; i++) {
+      //     his[i].addEventListener("click", () => {
+      //       if (his[i].classList.contains("active")) {
+      //         his[i].classList.remove("active");
+      //       } else {
+      //         his[i].classList.add("active");
+      //       }
+      //     });
+      //   }
+      for (let i = 0; i < his.length; i++) {
+        his[i].addEventListener("click", () => {
+          his[i].classList.toggle("active");
+        });
+      }
+    </script>
+  </body>
+</html>
