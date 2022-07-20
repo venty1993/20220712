@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      #circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: pink;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>원을 클릭하면 우로 300px만큼 움직입니다</p>
+    <div id="circle" onclick="moveRight()">ㅎ</div>
+
+    <script>
+      function moveRight() {
+        const circle = document.getElementById("circle");
+
+        circle.style.transform = `translateX(300px)`;
+      }
+    </script>
+  </body>
+</html>
