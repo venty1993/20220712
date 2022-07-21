@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title> </title>
+  </head>
+  <body>
+    <script>
+      // Math.random은 0~1 사이의 값을 반환해준다 (!중요 0은 포함, 1은 포함x)
+      // Math.random()*100 = 0부터 99.999999..... 사이 값을 랜덤하게 반환한다.
+      // Math.floor()는 소수점을 버리는 함수이다.
+      // Math.floor(Math.random()*100) = 0부터 99사이의 정수를 랜덤하게 반환
+      // Math.random()에다가 곱하는 숫자만큼 랜덤한 정수 범위가 생겨요!
+      //   예를들어, 50을 곱하면 0~49(50개)  100을곱하면 0~99(100개)
+      // 특정 범위를 지정하려면 최소값부터 최대값까지 몇개의 수가 필요한지 계산해보고
+      // 최소값을 더해주면 된다!
+
+      for (let i = 0; i < 100; i++) {
+        const randomNumber = Math.floor(Math.random() * 21 + 40);
+        console.log(randomNumber);
+      }
+    </script>
+  </body>
+</html>

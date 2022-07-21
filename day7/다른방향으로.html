@@ -13,6 +13,7 @@
         background-color: pink;
         text-align: center;
         line-height: 100px;
+        transition: 0.5s;
       }
     </style>
   </head>
@@ -25,17 +26,23 @@
       function moveRight() {
         const circle = document.getElementById("circle");
         const preset = [
+          // preset[0]=
           { x: 0, y: 0 },
+          // preset[1]=
           { x: 300, y: 0 },
+          // preset[2]=
           { x: 300, y: 300 },
+          // preset[3]=
           { x: 0, y: 300 },
         ];
 
         let index = Number(circle.dataset.index);
-        circle.dataset.index = ++index;
-        if (index === 3) {
-          circle.dataset.index = -1;
+        index++;
+        if (index === 4) {
+          index = 0;
         }
+        circle.dataset.index = index;
+        console.log(index);
         circle.style.transform = `translate(${preset[index].x}px,${preset[index].y}px)`;
       }
     </script>
