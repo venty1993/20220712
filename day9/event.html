@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="here">안녕!</div>
+    <div class="add-event">안녕..!!</div>
+    <script>
+      /*
+        자바스크립트로 dom요소를 조작할수있는 방법은 크게 2가지가 있다.
+        ex) 클릭, 드래그, 스크롤 등등 어떤 상황에서 응답하도록 만드는것
+
+        첫번째는 html 태그 내부에 on~ = "함수()" 형태로 작성하는것
+        ex) onclick = "함수이름()"
+
+        두번째는 자바스크립에서 dom요소를 가져와 이벤트 리스너를 추가하는것
+
+        onclick의 장점!!!
+        - 호환성이 좋다. (ie6 부터도 호환이 된다..!)
+            하지만 ie 지원이 공식적으로 종료되면서 글쎄..?
+
+        onclick의 단점!!!
+        - 함수이름이 외부에 노출된다. (보안성이 조금 취약하다)
+        - 프로퍼티에 함수가 들어가기때문에 중복선언이 불가능하다.
+
+        예를 들자면?
+            let a = 1;
+            a = 5;
+
+            요소.onclick = 함수1();
+            요소.onclick = 함수2();
+
+            결론적으로 봤을때, 위의 선언은 덮어쓰기당해서 없어진다.
+
+            요소.onclick =함수2(); 이렇게만 남아버린다.
+
+            방법은 있긴 한데..
+
+            요소.onclick = 함수묶음();
+
+            function 함수1() {
+
+            }
+            function 함수2() {
+
+            }
+            function 함수묶음(){
+                함수1();
+                함수2();
+            }
+        */
+
+      const here = document.querySelector(".here");
+      here.onclick = function () {
+        alert("hi");
+      };
+      here.onclick = function () {};
+
+      const addEvent = document.querySelector(".add-event");
+
+      addEvent.addEventListener("click", () => {
+        alert("클릭하셨군요");
+      });
+      addEvent.addEventListener("click", () => {
+        alert("그렇군요");
+      });
+    </script>
+  </body>
+</html>
