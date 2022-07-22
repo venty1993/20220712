@@ -31,19 +31,35 @@
   <body>
     <div class="container">
       <p class="print">0</p>
-      <button class="count-up-button">카운트 증가</button>
+      <button class="count-up-button">카운트 멈춤</button>
     </div>
     <script>
-      // Q. 버튼을 누르면 숫자가 1씩 증가하도록 addEventListener를 이용해서 만들어주세요
       const print = document.querySelector(".print");
-      const countUpButton = document.querySelector(".count-up-button");
-
       let count = 0;
 
+      //   인터벌은 일정 시간마다 주어진 함수를 계속 실행한다!
+
+      let countUp;
+      countUpStart();
+
+      const countUpButton = document.querySelector(".count-up-button");
       countUpButton.addEventListener("click", () => {
-        count++;
-        print.innerText = count;
+        if (countUp) {
+          clearInterval(countUp);
+          countUp = false;
+          countUpButton.innerText = "카운트 다시시작";
+        } else {
+          countUpStart();
+          countUpButton.innerText = "카운트 멈춤";
+        }
       });
+
+      function countUpStart() {
+        countUp = setInterval(() => {
+          count++;
+          print.innerText = count;
+        }, 100);
+      }
     </script>
   </body>
 </html>
