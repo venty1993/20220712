@@ -46,11 +46,13 @@
       countUpButton.addEventListener("click", () => {
         if (countUp) {
           clearInterval(countUp);
-          countUp = false;
           countUpButton.innerText = "카운트 다시시작";
+          countUp = false;
+          console.log(countUp);
         } else {
           countUpStart();
           countUpButton.innerText = "카운트 멈춤";
+          console.log(countUp);
         }
       });
 

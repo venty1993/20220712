@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      // 스크롤 위치 파악하는방법?
+      window.scrollY; //현재 스크롤이 얼마나 내려와있는가?
+
+      개체.getBoundingClientRect();
+      //이 개체가 갖고있는 위치,공간에 대한 정보가 들어있다.
+      //얘는 뷰포트 기준이다. (뷰포트는 지금 내가 보고있는 영역)
+      //스크롤 애니메이션은 보통 개체의 윗부분을 기준으로 삼는다.
+      //개체.getBoundingClientRect().top을 일반적으로 사용.
+      //사용할수있는 프로퍼티는 top, bottom, left, right 4종류
+
+      window.innerHeight; // 현재 뷰포트의 height값이 들어있다.
+    </script>
+  </body>
+</html>
