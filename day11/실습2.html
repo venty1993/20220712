@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <button id="top">위</button><button id="bottom">아래</button>
+    <div class="container">
+      <hr />
+      <!-- 
+        버튼을 누르면
+        [현재 시각은 hh시 mm분입니다.]
+        라는 텍스트를 이 공간에 추가해주세요.
+
+        위를 누르면 맨 위에, 아래를 누르면 맨 아래에 추가되어야합니다.
+        innerHTML 사용 하지 않고 node를 이용해야하며,
+        현재 시각은 const nowDate = new Date();로 가져올수있습니다.
+        시간을 가져올때는 getHours() 메서드를,
+        분을 가져올때는 getMinutes() 메서드를 이용할 수 있습니다.
+       -->
+    </div>
+    <script>
+      const topButton = document.getElementById("top");
+      const bottomButton = document.getElementById("bottom");
+
+      topButton.addEventListener("click", () => {
+        const nowDate = new Date();
+        const makePTage = document.createElement("p");
+        const pTagInner = document.createTextNode(
+          `현재 시각은 ${nowDate.getHours()}시 ${nowDate.getMinutes()}분입니다.`
+        );
+        makePTage.appendChild(pTagInner);
+
+        const container = document.querySelector(".container");
+
+        container.insertBefore(makePTage, container.firstChild);
+      });
+
+      bottomButton.addEventListener("click", () => {
+        const nowDate = new Date();
+        const makePTage = document.createElement("p");
+        const pTagInner = document.createTextNode(
+          `현재 시각은 ${nowDate.getHours()}시 ${nowDate.getMinutes()}분입니다.`
+        );
+        makePTage.appendChild(pTagInner);
+
+        const container = document.querySelector(".container");
+
+        container.appendChild(makePTage);
+      });
+    </script>
+  </body>
+</html>
