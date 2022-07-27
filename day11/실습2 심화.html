@@ -25,28 +25,25 @@
     <script>
       const topButton = document.getElementById("top");
       const bottomButton = document.getElementById("bottom");
+      const container = document.querySelector(".container");
 
       topButton.addEventListener("click", () => {
-        const container = document.querySelector(".container");
-
         container.insertBefore(makeP(), container.firstChild);
       });
 
       bottomButton.addEventListener("click", () => {
-        const container = document.querySelector(".container");
-
         container.appendChild(makeP());
       });
 
       function makeP() {
-        const nowDate = new Date();
-        const makePTage = document.createElement("p");
+        const nowDate = new Date(); //현재시간 가져오기
+        const makePTag = document.createElement("p"); //p태그를 만들고
         const pTagInner = document.createTextNode(
           `현재 시각은 ${nowDate.getHours()}시 ${nowDate.getMinutes()}분입니다.`
-        );
-        makePTage.appendChild(pTagInner);
+        ); // 텍스트 노드를 만든뒤
+        makePTage.appendChild(pTagInner); // 만든 p태그에 텍스트 노드를 연결해준다
 
-        return makePTage;
+        return makePTag; // 만든 p태그를 반환한다!
       }
     </script>
   </body>
