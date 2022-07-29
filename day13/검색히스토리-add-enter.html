@@ -121,12 +121,23 @@
       const searchButton = document.getElementsByTagName("button")[0];
       const searchHistry = document.getElementsByClassName("search-history")[0];
 
-      searchButton.addEventListener("click", () => {
+      searchButton.addEventListener("click", (e) => {
+        console.log(e);
         searchHistry.insertBefore(
           makeLiNode(searchInput.value),
           searchHistry.firstChild
         );
         searchInput.value = "";
+      });
+
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          searchHistry.insertBefore(
+            makeLiNode(searchInput.value),
+            searchHistry.firstChild
+          );
+          searchInput.value = "";
+        }
       });
 
       function makeLiNode(text) {
