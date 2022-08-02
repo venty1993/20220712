@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --slider-width: 300px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      .slider {
+        margin: 24px;
+        width: var(--slider-width);
+        height: 200px;
+        border: 5px solid black;
+        overflow: hidden;
+      }
+
+      .slide-contents-wrapper {
+        display: flex;
+        transition: 1s;
+      }
+
+      .slide-content {
+        width: var(--slider-width);
+        height: 200px;
+        font-size: 56px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 200px;
+        flex-shrink: 0;
+      }
+
+      /* .slide-content:nth-child(1) {
+        background-color: red;
+      }
+      .slide-content:nth-child(2) {
+        background-color: blue;
+      }
+      .slide-content:nth-child(3) {
+        background-color: green;
+      } */
+
+      /* nth-child()라는 가상선택자는 dom요소 순서를 기준으로 적용된다 */
+
+      .content1 {
+        background-color: red;
+      }
+      .content2 {
+        background-color: blue;
+      }
+      .content3 {
+        background-color: green;
+      }
+      .buttons {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 24px;
+      }
+      .radio-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .radio {
+        background-color: gray;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .radio.selected {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <ul class="slide-contents-wrapper">
+        <li class="slide-content content1">1</li>
+        <li class="slide-content content2">2</li>
+        <li class="slide-content content3">3</li>
+      </ul>
+    </div>
+    <div class="buttons">
+      <button class="prev">이전</button>
+      <div class="radio-container"></div>
+      <button class="next">다음</button>
+    </div>
+
+    <script>
+      const slideContentsWrapper = document.querySelector(
+        `.slide-contents-wrapper`
+      );
+      const radioContainer = document.querySelector(".radio-container");
+      const cloneFirst = slideContentsWrapper.firstElementChild.cloneNode(true);
+      const cloneLast = slideContentsWrapper.lastElementChild.cloneNode(true);
+      const 슬라이드너비 = document.querySelector(`.slider`).clientWidth;
+
+      for (let i = 0; i < slideContentsWrapper.childElementCount; i++) {
+        const radioButton = document.createElement("div");
+        radioButton.classList.add("radio");
+        radioContainer.appendChild(radioButton);
+      }
+
+      radioContainer.firstChild.classList.add("selected");
+
+      slideContentsWrapper.insertBefore(
+        cloneLast,
+        slideContentsWrapper.firstChild
+      );
+      slideContentsWrapper.appendChild(cloneFirst);
+
+      const buttons = document.getElementsByTagName(`button`);
+      const prevButton = buttons[0];
+      const nextButton = buttons[1];
+
+      let moveChecker = true;
+
+      let index = 1;
+      moveSlide(false);
+
+      nextButton.addEventListener("click", () => {
+        //childElmentCount 프로퍼티에는 자식요소의 갯수 값이 들어있다
+        if (moveChecker) {
+          moveChecker = false;
+          index++;
+          moveSlide(true);
+
+          drowRadio();
+          setTimeout(() => {
+            moveChecker = true;
+            if (index === slideContentsWrapper.childElementCount - 1) {
+              index = 1;
+              moveSlide(false);
+            }
+          }, 1000);
+        }
+      });
+      prevButton.addEventListener(`click`, () => {
+        if (moveChecker) {
+          moveChecker = false;
+          index--;
+          moveSlide(true);
+
+          drowRadio();
+          setTimeout(() => {
+            moveChecker = true;
+            if (index === 0) {
+              index = slideContentsWrapper.childElementCount - 2;
+              moveSlide(false);
+            }
+          }, 1000);
+        }
+      });
+
+      function moveSlide(transition) {
+        if (transition) {
+          slideContentsWrapper.style.transition = `1s`;
+        } else {
+          slideContentsWrapper.style.transition = `0s`;
+        }
+
+        slideContentsWrapper.style.transform = `translateX(-${
+          index * 슬라이드너비
+        }px)`;
+      }
+
+      function drowRadio() {
+        for (let i = 0; i < radioContainer.childElementCount; i++) {
+          radioContainer.children[i].classList.remove("selected");
+        }
+        console.log(index);
+
+        if (index === slideContentsWrapper.childElementCount - 1) {
+          radioContainer.children[0].classList.add("selected");
+        } else if (index === 0) {
+          radioContainer.children[
+            slideContentsWrapper.childElementCount - 3
+          ].classList.add("selected");
+        } else {
+          radioContainer.children[index - 1].classList.add("selected");
+        }
+      }
+    </script>
+  </body>
+</html>

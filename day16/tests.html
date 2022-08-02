@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        list-style: none;
+      }
+      .slider {
+        width: 300px;
+        height: 200px;
+        border: 5px solid black;
+        margin: 24px;
+        overflow: hidden;
+      }
+
+      .slid-contents-wrapper {
+        display: flex;
+        /* transform: translateX(-300px); */
+        transition: 1s;
+        /* 이부분 */
+      }
+
+      .slid-content {
+        width: 300px;
+        height: 200px;
+        font-size: 56px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 200px;
+        flex-shrink: 0;
+      }
+      /* .slid-content:nth-child(1){
+            background-color: red;
+        }
+        .slid-content:nth-child(2){
+            background-color: blue;
+        }
+        .slid-content:nth-child(3){
+            background-color: green;
+        } */
+
+      /* nth-child는 dom요소 순서를 기준으로 적용된다 */
+
+      .content1 {
+        background-color: red;
+      }
+
+      .content2 {
+        background-color: blue;
+      }
+
+      .content3 {
+        background-color: green;
+      }
+
+      .buttons {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 24px;
+      }
+
+      .radio-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .radio {
+        background-color: gray;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+      }
+
+      .radio.selected {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <ul class="slid-contents-wrapper">
+        <li class="slid-content content1">1</li>
+        <li class="slid-content content2">2</li>
+        <li class="slid-content content3">3</li>
+      </ul>
+    </div>
+    <div class="buttons">
+      <button class="prev">이전</button>
+      <div class="radio-container">
+        <!-- <div class="radio"></div>
+            <div class="radio"></div> -->
+      </div>
+      <button class="next">다음</button>
+    </div>
+
+    <script>
+      const slidContentsWrapper = document.querySelector(
+        `.slid-contents-wrapper`
+      );
+      const radioContainer = document.querySelector(".radio-container");
+      const cloneFirst = slidContentsWrapper.firstElementChild.cloneNode(true);
+      const cloneLast = slidContentsWrapper.lastElementChild.cloneNode(true);
+      const 슬라이드너비 = document.querySelector(".slider").clientWidth;
+
+      for (let i = 0; i < slidContentsWrapper.childElementCount; i++) {
+        const radioButton = document.createElement("div");
+        radioButton.classList.add("radio");
+        radioContainer.appendChild(radioButton);
+      }
+
+      radioContainer.firstElementChild.classList.add("selected");
+
+      slidContentsWrapper.insertBefore(
+        cloneLast,
+        slidContentsWrapper.firstChild
+      );
+      slidContentsWrapper.appendChild(cloneFirst);
+
+      // const slideContents = document.getElementsByClassName("slid-contents");
+
+      const buttons = document.getElementsByTagName(`button`);
+      const prevButton = buttons[0];
+      const nextButton = buttons[1];
+
+      let moveChecker = true;
+      // 맨 마지막 슬라이드랑 맨 앞 슬라이드에서 버튼 빠르게 누르면 오류날때 있는데 그걸 방지
+      // true일때 움직이고 false면 버튼 눌러도 작동 안하게끔
+
+      let index = 1;
+      moveSlide(false);
+      // 기본값을 1로 바꾸려고 첫화면에 움직일때 0초로 안보이게(원래같으면 0에서 1로 가는게 보임)
+
+      nextButton.addEventListener("click", () => {
+        if (moveChecker) {
+          moveChecker = false; //실행됐으면 무브체커를 false로 돌려줘야함 그래야 중복실행 안됨
+          index++;
+          moveSlide(true);
+
+          setTimeout(() => {
+            moveChecker = true; //false였던 무브체커, 항상 셋타임아웃이 실행되게끔 트루로 다시 돌려줌
+            if (index === slidContentsWrapper.childElementCount - 1) {
+              index = 1;
+              moveSlide(false);
+            }
+          }, 1000);
+        }
+      });
+
+      prevButton.addEventListener("click", () => {
+        if (moveChecker) {
+          moveChecker = false;
+          index--;
+          moveSlide(true);
+
+          setTimeout(() => {
+            moveChecker = true;
+            if (index === 0) {
+              index = slidContentsWrapper.childElementCount - 2;
+              moveSlide(false);
+            }
+          }, 1000);
+        }
+      });
+
+      function moveSlide(transition) {
+        if (transition) {
+          slidContentsWrapper.style.transition = `1s`;
+        } else {
+          slidContentsWrapper.style.transition = `0s`;
+        }
+
+        slidContentsWrapper.style.transform = `translateX(-${
+          index * 슬라이드너비
+        }px)`;
+      }
+    </script>
+  </body>
+</html>
+<!-- slidContentsWrapper.childElementCount-1)){//600 -->
+<!-- childElementCount 프로퍼티에 자식이 몇명이니 -->
+<!-- 애플 이미지 어떻게 넣었는지 다시 보기 텍스트가 위에 겹친건지 뭔지 -->
+<!-- getBounding까먹음 day10-->
+
+<!-- 13일 test다시 -->
+<!-- 9일 settimeout 다시 -->
