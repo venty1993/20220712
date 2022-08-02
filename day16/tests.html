@@ -79,6 +79,7 @@
         height: 12px;
         width: 12px;
         border-radius: 50%;
+        cursor: pointer;
       }
 
       .radio.selected {
@@ -116,6 +117,13 @@
         const radioButton = document.createElement("div");
         radioButton.classList.add("radio");
         radioContainer.appendChild(radioButton);
+        // 왜 어팬드차일드?
+
+        radioButton.addEventListener("click", () => {
+          index = i + 1;
+          moveSlide(true);
+          drowRadio();
+        });
       }
 
       radioContainer.firstElementChild.classList.add("selected");
@@ -146,6 +154,21 @@
           index++;
           moveSlide(true);
 
+          // for(let i = 0; i< radioContainer.childElementCount; i++){
+          //     radioContainer.children[i].classList.remove("selected");
+          // }
+          // console.log(index)
+
+          // //1안
+          // if(index===slidContentsWrapper.childElementCount-1){
+          //     radioContainer.children[0].classList.add("selected");
+          // }else{
+          //     radioContainer.children[index-1].classList.add("selected")
+          // }
+
+          // radioContainer.children[index-1].classList.add("selected");
+          // 빨간게 사라지고 옆에 빨간거 생기게
+          drowRadio();
           setTimeout(() => {
             moveChecker = true; //false였던 무브체커, 항상 셋타임아웃이 실행되게끔 트루로 다시 돌려줌
             if (index === slidContentsWrapper.childElementCount - 1) {
@@ -162,6 +185,7 @@
           index--;
           moveSlide(true);
 
+          drowRadio();
           setTimeout(() => {
             moveChecker = true;
             if (index === 0) {
@@ -182,6 +206,24 @@
         slidContentsWrapper.style.transform = `translateX(-${
           index * 슬라이드너비
         }px)`;
+      }
+
+      function drowRadio() {
+        for (let i = 0; i < radioContainer.childElementCount; i++) {
+          radioContainer.children[i].classList.remove("selected");
+        } //버튼색상초기화
+        // console.log(index);
+
+        //1안 index에 따라 어떤 버튼에 빨간 버튼 부여할지 정해줌
+        if (index === slidContentsWrapper.childElementCount - 1) {
+          radioContainer.children[0].classList.add("selected");
+        } else if (index === 0) {
+          radioContainer.children[
+            slidContentsWrapper.childElementCount - 3 //요기 다시
+          ].classList.add("selected");
+        } else {
+          radioContainer.children[index - 1].classList.add("selected");
+        }
       }
     </script>
   </body>

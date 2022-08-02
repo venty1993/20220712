@@ -76,6 +76,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
+        cursor: pointer;
       }
 
       .radio.selected {
@@ -110,6 +111,12 @@
         const radioButton = document.createElement("div");
         radioButton.classList.add("radio");
         radioContainer.appendChild(radioButton);
+
+        radioButton.addEventListener("click", () => {
+          index = i + 1;
+          moveSlide(true);
+          drowRadio();
+        });
       }
 
       radioContainer.firstChild.classList.add("selected");
@@ -176,11 +183,12 @@
       }
 
       function drowRadio() {
+        // 버튼 색상 초기화
         for (let i = 0; i < radioContainer.childElementCount; i++) {
           radioContainer.children[i].classList.remove("selected");
         }
-        console.log(index);
 
+        // index에 따라서 어떤 버튼에 빨간색상을 부여할지 정해준다
         if (index === slideContentsWrapper.childElementCount - 1) {
           radioContainer.children[0].classList.add("selected");
         } else if (index === 0) {
