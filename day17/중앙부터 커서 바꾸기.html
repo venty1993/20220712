@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      body {
+        cursor: none;
+        height: 100vh;
+      }
+
+      .cursor {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        /* transition: 0.2s; */
+      }
+      .left-cursor {
+        background-color: red;
+      }
+
+      .right-cursor {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor left-cursor"></div>
+    <script>
+      console.log(window.innerWidth / 2);
+      const cursorDiv = document.querySelector(".left-cursor");
+
+      window.addEventListener("mousemove", (e) => {
+        cursorDiv.style.left = `${e.clientX}px`;
+        cursorDiv.style.top = `${e.clientY}px`;
+        if (window.innerWidth / 2 > e.clientX) {
+          console.log(`마우스는 왼쪽에 있다`);
+          cursorDiv.classList.add("left-cursor");
+          cursorDiv.classList.remove("right-cursor");
+        } else {
+          cursorDiv.classList.add("right-cursor");
+          cursorDiv.classList.remove("left-cursor");
+          console.log(`마우스는 오른쪽에 있다`);
+        }
+      });
+    </script>
+  </body>
+</html>

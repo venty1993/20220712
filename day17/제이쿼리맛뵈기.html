@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="/path/to/flickity.css" media="screen" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
+  </head>
+  <body>
+    <div id="hi">안녕하세요</div>
+  </body>
+
+  <div class="main-carousel">
+    <div class="carousel-cell">...</div>
+    <div class="carousel-cell">...</div>
+    <div class="carousel-cell">...</div>
+  </div>
+  <script>
+    document.getElementById("hi");
+    hi.style.color = `red`;
+
+    $("#hi").css("color", "red");
+
+    $(".main-carousel").flickity({
+      // options
+      cellAlign: "left",
+      contain: true,
+    });
+  </script>
+  <script src="/path/to/flickity.pkgd.min.js"></script>
+</html>

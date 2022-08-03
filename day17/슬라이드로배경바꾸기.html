@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      body {
+        transition: 0.5s ease-in-out;
+      }
+      section {
+        height: 1500px;
+      }
+
+      #top {
+        /* background-color: #23232311; */
+      }
+      #middle {
+        /* background-color: #ff000011; */
+      }
+
+      #bottom {
+        /* background-color: #00ff0011; */
+      }
+    </style>
+  </head>
+  <body>
+    <section id="top"><h2>탑</h2></section>
+    <section id="middle"><h2>미들</h2></section>
+    <section id="bottom"><h2>바텀</h2></section>
+  </body>
+  <script>
+    const body = document.querySelector("body");
+    const middle = document.getElementById("middle");
+    const bottom = document.getElementById("bottom");
+
+    window.addEventListener("scroll", () => {
+      if (middle.getBoundingClientRect().top > 0) {
+        body.style.backgroundColor = `rgb(253, 227, 214)`;
+      }
+      if (bottom.getBoundingClientRect().top < 0) {
+        body.style.backgroundColor = `rgb(193, 208, 232)`;
+      }
+    });
+  </script>
+</html>
